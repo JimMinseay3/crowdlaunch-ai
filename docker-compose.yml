@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: crowdlaunch
+      POSTGRES_USER: crowdlaunch
+      POSTGRES_PASSWORD: crowdlaunch
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U crowdlaunch"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - crowdlaunch-postgres:/var/lib/postgresql/data
+
+  api:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://crowdlaunch:crowdlaunch@postgres:5432/crowdlaunch
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  crowdlaunch-postgres:
