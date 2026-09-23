@@ -44,8 +44,6 @@
 4. 在「Backer Voice」查看留言主题、风险和回复草稿，确认系统不会自动发送。
 5. 在「运行记录」查看 Agent 输入、输出、警告和审批状态。
 
-完整话术见 [docs/interview-demo/demo-script.md](docs/interview-demo/demo-script.md)。
-
 ## 关键能力
 
 - 中文运营驾驶舱，适配桌面和移动端
