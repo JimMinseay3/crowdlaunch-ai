@@ -14,6 +14,26 @@
 
 所有会影响外部系统的动作都停在人工审批门前；审批会留下记录，但演示版不会执行真实外部写入。
 
+## 使用截图
+
+### 1. 众筹运营工作台
+
+统一展示筹款目标、支持者预测、ROAS、转化漏斗和 Agent 运行状态。
+
+![CrowdLaunch AI 众筹运营工作台](docs/images/01-dashboard.png)
+
+### 2. Opportunity Agent 机会研究
+
+结合产品 Brief、竞品证据和成本结构，输出适配度、风险提示和可解释的推进建议。
+
+![Opportunity Agent 众筹机会研究](docs/images/02-opportunity-agent.png)
+
+### 3. Growth Agent 广告增长分析
+
+汇总广告组表现，诊断 CPC 与 CVR 异常，并把预算迁移建议送入人工审批。
+
+![Growth Agent 广告增长分析](docs/images/03-growth-agent.png)
+
 ## 演示路径
 
 建议按下面顺序完成一次 3 分钟演示：

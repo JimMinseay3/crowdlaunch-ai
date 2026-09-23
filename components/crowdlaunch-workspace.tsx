@@ -81,7 +81,21 @@ export function CrowdLaunchWorkspace() {
   const [approved, setApproved] = useState<string[]>([]);
   const [newProjectOpen, setNewProjectOpen] = useState(false);
   const viewTitle = useMemo(() => [...nav, ...secondaryNav].find((entry) => entry.id === view)?.label ?? "工作台", [view]);
-  const navigate = (next: View) => { setView(next); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  const navigate = (next: View) => {
+    setView(next);
+    window.history.replaceState(null, "", `#${next}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    const readHash = () => {
+      const next = window.location.hash.slice(1) as View;
+      if (nav.some((item) => item.id === next)) setView(next);
+    };
+    readHash();
+    window.addEventListener("hashchange", readHash);
+    return () => window.removeEventListener("hashchange", readHash);
+  }, []);
   const runResearch = () => { setRunning(true); setAnalysisDone(false); toast.info("研究 Agent 已开始", { description: "正在调用竞品检索、Reward 计算和风险评估工具。" }); window.setTimeout(() => { setRunning(false); setAnalysisDone(true); toast.success("机会研究完成", { description: "已生成 7 条可追溯引用与 3 个 Reward 建议。" }); }, 1100); };
   const approve = (id: string, label: string) => { setApproved((current) => current.includes(id) ? current : [...current, id]); toast.success(`${label}已批准`, { description: "审批动作已写入演示审计记录。" }); };
 
